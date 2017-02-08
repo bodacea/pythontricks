@@ -6,7 +6,7 @@ df.plot.bar\(stacked=True\)
 
 sns.boxplot\(df\[col1\], df\[col2\]\) \# col1 = xaxis; col2 = yaxis
 
-
+### Axis labels
 
 fig = plt.figure\(\)
 
@@ -19,6 +19,10 @@ ax.set\_xlabel\(label1\)
 ax.set\_ylabel\(label2\)
 
 \#ax.legend\(\)
+
+### Write to html
+
+df.to\_html\(\)
 
 
 
