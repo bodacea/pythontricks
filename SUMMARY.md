@@ -11,4 +11,5 @@
 * [Joins and merges](joins-and-merges.md)
 * [Plots](plots.md)
 * [Lists](lists.md)
+* [Summarise pairs \(or more\) of columns](summarise-pairs-(or-more)-of-columns.md)
 
