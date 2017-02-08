@@ -46,3 +46,73 @@ plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
 
 df.to\_html\(\)
 
+### Choropleth \(in new page\)
+
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+import plotly
+
+plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
+
+scl = \[\[0.0, 'rgb\(242,240,247\)'\],\[0.2, 'rgb\(218,218,235\)'\],\[0.4, 'rgb\(188,189,220\)'\],\
+
+            \[0.6, 'rgb\(158,154,200\)'\],\[0.8, 'rgb\(117,107,177\)'\],\[1.0, 'rgb\(84,39,143\)'\]\]
+
+data = \[ dict\(
+
+        type='choropleth',
+
+        colorscale = scl,
+
+        autocolorscale = False,
+
+        locations = dfbystate\['state'\],
+
+        z = dfbystate\['borrowers'\].astype\(float\),
+
+        locationmode = 'USA-states',
+
+        text = dfbystate\['text'\],
+
+        marker = dict\(
+
+            line = dict \(
+
+                color = 'rgb\(255,255,255\)',
+
+                width = 2
+
+            \) \),
+
+        colorbar = dict\(
+
+            title = 'Number of borrowers'\)
+
+        \) \]
+
+
+
+layout = dict\(
+
+        title = 'Borrowers&lt;br&gt;\(Hover for breakdown\)',
+
+        geo = dict\(
+
+            scope='usa',
+
+            projection=dict\( type='albers usa' \),
+
+            showlakes = True,
+
+            lakecolor = 'rgb\(255, 255, 255\)'\),
+
+             \)
+
+    
+
+fig = dict\( data=data, layout=layout \)
+
+plotly.offline.plot\( fig, filename='../../data/borrowers\_map.html' \)
+
