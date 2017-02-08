@@ -9,4 +9,5 @@
 * [Json and Xml](json-and-xml.md)
 * [Dates and times](dates-and-times.md)
 * [Joins and merges](joins-and-merges.md)
+* [Plots](plots.md)
 
