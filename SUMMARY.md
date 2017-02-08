@@ -6,4 +6,5 @@
 * [Summarise one or more columns](summarise-one-or-more-columns.md)
 * [Common APIs](common-apis.md)
 * [Jupyter notebook tricks](jupyter-notebook-tricks.md)
+* [Json and Xml](json-and-xml.md)
 
