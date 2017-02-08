@@ -7,4 +7,5 @@
 * [Common APIs](common-apis.md)
 * [Jupyter notebook tricks](jupyter-notebook-tricks.md)
 * [Json and Xml](json-and-xml.md)
+* [Dates and times](dates-and-times.md)
 

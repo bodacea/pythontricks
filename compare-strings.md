@@ -8,5 +8,7 @@ Get all rows with one of val1, val2 etc: df\[df\[col\].isin\(\[val1, val2, ''\]\
 
 Get all rows that don't start with val1, val2 etc: df\[df\[col\].str\[:4\].isin\(\[val1, val2, val3\]\) == False\]
 
+Get non-null values: df\[~df\[col\].isnull\(\)\]
+
 
 
