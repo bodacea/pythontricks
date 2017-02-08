@@ -20,11 +20,15 @@ ax.set\_ylabel\(label2\)
 
 \#ax.legend\(\)
 
-### Write to html
+### Using Plotly
+
+import plotly
+
+plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
+
+
+
+### Save to file/web
 
 df.to\_html\(\)
-
-
-
-
 
