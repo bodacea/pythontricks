@@ -28,13 +28,15 @@ df = df.append\(newdata\)
 
 import csv
 
-    fin = open\(infilename, 'r'\)
+```
+fin = open\(infilename, 'r'\)
 
-    fout = open\(outfilename, 'w', newline=''\)
+fout = open\(outfilename, 'w', newline=''\)
 
-    cin = csv.reader\(fin\)
+cin = csv.reader\(fin\)
 
-    cout = csv.writer\(fout, quoting=csv.QUOTE\_NONNUMERIC\)
+cout = csv.writer\(fout, quoting=csv.QUOTE\_NONNUMERIC\)
+```
 
 
 
