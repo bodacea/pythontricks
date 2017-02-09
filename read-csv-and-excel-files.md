@@ -16,5 +16,25 @@ df = pd.DataFrame\(\[\], columns=headers\)
 
 df = df.append\(pd.DataFrame\(\[val1, val2, etc\], columns=headers\)\)
 
+### Check a bunch of files
+
+filelist = glob.glob\('../\*.csv'\)
+
+df = pd.DataFrame\(\[\]\)
+
+df = df.append\(newdata\)
+
+### Read/Write raw CSV
+
+import csv
+
+    fin = open\(infilename, 'r'\)
+
+    fout = open\(outfilename, 'w', newline=''\)
+
+    cin = csv.reader\(fin\)
+
+    cout = csv.writer\(fout, quoting=csv.QUOTE\_NONNUMERIC\)
+
 
 

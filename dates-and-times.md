@@ -10,3 +10,13 @@ df\[col\].dt.dayofyear
 
 Number of days between dates:  df\[lag\] = df\[col1\] - df\[col2\]; df\[lag\].dt.days
 
+
+
+import datetime
+
+datetime.datetime.strptime\(date\_text, '%Y-%m-%dT%H:%M:%S.%f'\)
+
+
+
+
+

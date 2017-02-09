@@ -10,9 +10,17 @@
 * non-null values: df\[~df\[col\].isnull\(\)\]
 
 * rows starting with value; ignoring NaNs: df\[df\[col\].str.startswith\(value, na=False\)\]
+
 * df\[df\[col\].str.contains\(value\)\]
 * df\[col\].astype\('str'\).str.replace\('\[^0-9.\]', ''\)
 * df\[col\].replace\('', np.NaN\)
-* 
+* df\['state'\].replace\(\['Illinois', 'Md.', 'Georgia'\], \['IL', 'MD', 'GA'\], inplace=True\)
+
+
+
+Count commas: df\[\[col\]\].applymap\(lambda x: str.count\(x, ','\)\)\[col\].value\_counts\(\)
+
+
+
 
 
