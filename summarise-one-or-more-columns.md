@@ -10,15 +10,11 @@ Stats of numerical column: df\[col\].describe\(\)
 
 
 
-All the unique values in a column, in alphabetical order: 
+All the unique values in a column, in alphabetical order:
 
 vals = df\[col\].value\_counts\(dropna=True\).index.tolist\(\)
 
 vals.sort\(\) \# inplace sort
 
 print\('{}'.format\(vals\)\)
-
-
-
-
 
