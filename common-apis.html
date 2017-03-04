@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Common APIs · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="read-csv-and-excel-files.html" />
+    <link rel="next" href="jupyter-notebook-tricks.html" />
     
+    
+    <link rel="prev" href="summarise-one-or-more-columns.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -139,7 +141,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="common-apis.html">
+        <li class="chapter active" data-level="1.5" data-path="common-apis.html">
             
                 <a href="common-apis.html">
             
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Common APIs</a>
     </h1>
 </div>
 
@@ -288,9 +290,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pythontricks">pythontricks</h1>
-<p>Gitbook with all the python tricks I keep forgetting how to do</p>
-<p>(checking through old code: have got to but not started on file_ingestions_analysis in work codebase). </p>
+                                <h1 id="common-apis">Common APIs</h1>
+<h2 id="box">Box</h2>
+<blockquote>
+<p><code>from boxsdk import Client, OAuth2</code></p>
+<p><code>oauth = OAuth2(client_id=client_id, client_secret=client_secret, access_token=developer_token)</code></p>
+<p><code>client = Client(oauth)</code></p>
+<p><code>estream = client.events()</code></p>
+<p><code>events = estream.get_events()</code></p>
+</blockquote>
 
                                 
                                 </section>
@@ -318,8 +326,12 @@
 
             
                 
+                <a href="summarise-one-or-more-columns.html" class="navigation navigation-prev " aria-label="Previous page: Summarise one or more columns">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="read-csv-and-excel-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: read csv and excel files">
+                
+                <a href="jupyter-notebook-tricks.html" class="navigation navigation-next " aria-label="Next page: Jupyter notebook tricks">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +342,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-02-09T01:44:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Common APIs","level":"1.5","depth":1,"next":{"title":"Jupyter notebook tricks","level":"1.6","depth":1,"path":"jupyter-notebook-tricks.md","ref":"jupyter-notebook-tricks.md","articles":[]},"previous":{"title":"Summarise one or more columns","level":"1.4","depth":1,"path":"summarise-one-or-more-columns.md","ref":"summarise-one-or-more-columns.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"common-apis.md","mtime":"2017-02-08T16:36:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

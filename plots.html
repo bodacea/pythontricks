@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Plots · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="read-csv-and-excel-files.html" />
+    <link rel="next" href="lists.html" />
     
+    
+    <link rel="prev" href="joins-and-merges.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -204,7 +206,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="plots.html">
+        <li class="chapter active" data-level="1.10" data-path="plots.html">
             
                 <a href="plots.html">
             
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Plots</a>
     </h1>
 </div>
 
@@ -288,9 +290,83 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pythontricks">pythontricks</h1>
-<p>Gitbook with all the python tricks I keep forgetting how to do</p>
-<p>(checking through old code: have got to but not started on file_ingestions_analysis in work codebase). </p>
+                                <h1 id="plots">Plots</h1>
+<p>df[col].hist(bins=100)</p>
+<p>df.plot.bar(stacked=True)</p>
+<p>sns.boxplot(df[col1], df[col2]) # col1 = xaxis; col2 = yaxis</p>
+<p>plt.figure(figsize=(10,10))</p>
+<h3 id="subplots">Subplots</h3>
+<p>ax = plt.subplot(3, 1, 1)</p>
+<p>df[col1].hist(bins=50)</p>
+<p>ax = plt.subplot(3, 1, 2)</p>
+<p>df[col2].hist(bins=50)</p>
+<p>ax = plt.subplot(3, 1, 3)</p>
+<p>plt.scatter(df[col1], df[col2])</p>
+<h3 id="axis-labels">Axis labels</h3>
+<p>fig = plt.figure()</p>
+<p>ax = fig.add_subplot(1,1,1)</p>
+<p>ax.scatter(df[col1], df[col2], c=df[col3])</p>
+<p>ax.set_xlabel(label1)</p>
+<p>ax.set_ylabel(label2)</p>
+<p>#ax.legend()</p>
+<h3 id="using-plotly">Using Plotly</h3>
+<p>import plotly</p>
+<p>plotly.tools.set_config_file(world_readable=False, sharing=&apos;private&apos;)</p>
+<h3 id="save-to-fileweb">Save to file/web</h3>
+<p>df.to_html()</p>
+<h3 id="choropleth-in-new-page">Choropleth (in new page)</h3>
+<p>import matplotlib.pyplot as plt</p>
+<p>%matplotlib inline</p>
+<p>import plotly</p>
+<p>plotly.tools.set_config_file(world_readable=False, sharing=&apos;private&apos;)</p>
+<p>scl = [[0.0, &apos;rgb(242,240,247)&apos;],[0.2, &apos;rgb(218,218,235)&apos;],[0.4, &apos;rgb(188,189,220)&apos;],\</p>
+<pre><code>        \[0.6, &apos;rgb\(158,154,200\)&apos;\],\[0.8, &apos;rgb\(117,107,177\)&apos;\],\[1.0, &apos;rgb\(84,39,143\)&apos;\]\]
+</code></pre><p>data = [ dict(</p>
+<pre><code>    type=&apos;choropleth&apos;,
+
+    colorscale = scl,
+
+    autocolorscale = False,
+
+    locations = dfbystate\[&apos;state&apos;\],
+
+    z = dfbystate\[&apos;borrowers&apos;\].astype\(float\),
+
+    locationmode = &apos;USA-states&apos;,
+
+    text = dfbystate\[&apos;text&apos;\],
+
+    marker = dict\(
+
+        line = dict \(
+
+            color = &apos;rgb\(255,255,255\)&apos;,
+
+            width = 2
+
+        \) \),
+
+    colorbar = dict\(
+
+        title = &apos;Number of borrowers&apos;\)
+
+    \) \]
+</code></pre><p>layout = dict(</p>
+<pre><code>    title = &apos;Borrowers&amp;lt;br&amp;gt;\(Hover for breakdown\)&apos;,
+
+    geo = dict\(
+
+        scope=&apos;usa&apos;,
+
+        projection=dict\( type=&apos;albers usa&apos; \),
+
+        showlakes = True,
+
+        lakecolor = &apos;rgb\(255, 255, 255\)&apos;\),
+
+         \)
+</code></pre><p>fig = dict( data=data, layout=layout )</p>
+<p>plotly.offline.plot( fig, filename=&apos;../../data/borrowers_map.html&apos; )</p>
 
                                 
                                 </section>
@@ -318,8 +394,12 @@
 
             
                 
+                <a href="joins-and-merges.html" class="navigation navigation-prev " aria-label="Previous page: Joins and merges">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="read-csv-and-excel-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: read csv and excel files">
+                
+                <a href="lists.html" class="navigation navigation-next " aria-label="Next page: Lists">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +410,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-02-09T01:44:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Plots","level":"1.10","depth":1,"next":{"title":"Lists","level":"1.11","depth":1,"path":"lists.md","ref":"lists.md","articles":[]},"previous":{"title":"Joins and merges","level":"1.9","depth":1,"path":"joins-and-merges.md","ref":"joins-and-merges.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"plots.md","mtime":"2017-02-08T22:53:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Compare strings · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="read-csv-and-excel-files.html" />
+    <link rel="next" href="summarise-one-or-more-columns.html" />
     
+    
+    <link rel="prev" href="read-csv-and-excel-files.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -113,7 +115,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="compare-strings.html">
+        <li class="chapter active" data-level="1.3" data-path="compare-strings.html">
             
                 <a href="compare-strings.html">
             
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Compare strings</a>
     </h1>
 </div>
 
@@ -288,9 +290,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pythontricks">pythontricks</h1>
-<p>Gitbook with all the python tricks I keep forgetting how to do</p>
-<p>(checking through old code: have got to but not started on file_ingestions_analysis in work codebase). </p>
+                                <h1 id="compare-strings-in-columns">Compare Strings in columns</h1>
+<ul>
+<li>value: df[df[col] == value]</li>
+<li><p>everything in string before &quot;/&quot;: df[col].str.split(&apos;/&apos;).str.get(0)</p>
+</li>
+<li><p>rows with one of val1, val2 etc: df[df[col].isin([val1, val2, &apos;&apos;])]</p>
+</li>
+<li><p>rows that don&apos;t start with val1, val2 etc: df[df[col].str[:4].isin([val1, val2, val3]) == False]</p>
+</li>
+<li><p>non-null values: df[~df[col].isnull()]</p>
+</li>
+<li><p>rows starting with value; ignoring NaNs: df[df[col].str.startswith(value, na=False)]</p>
+</li>
+<li><p>df[df[col].str.contains(value)]</p>
+</li>
+<li>df[col].astype(&apos;str&apos;).str.replace(&apos;[^0-9.]&apos;, &apos;&apos;)</li>
+<li>df[col].replace(&apos;&apos;, np.NaN)</li>
+<li>df[&apos;state&apos;].replace([&apos;Illinois&apos;, &apos;Md.&apos;, &apos;Georgia&apos;], [&apos;IL&apos;, &apos;MD&apos;, &apos;GA&apos;], inplace=True)</li>
+</ul>
+<p>Count commas: df[[col]].applymap(lambda x: str.count(x, &apos;,&apos;))[col].value_counts()</p>
 
                                 
                                 </section>
@@ -318,8 +337,12 @@
 
             
                 
+                <a href="read-csv-and-excel-files.html" class="navigation navigation-prev " aria-label="Previous page: read csv and excel files">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="read-csv-and-excel-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: read csv and excel files">
+                
+                <a href="summarise-one-or-more-columns.html" class="navigation navigation-next " aria-label="Next page: Summarise one or more columns">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +353,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-02-09T01:44:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Compare strings","level":"1.3","depth":1,"next":{"title":"Summarise one or more columns","level":"1.4","depth":1,"path":"summarise-one-or-more-columns.md","ref":"summarise-one-or-more-columns.md","articles":[]},"previous":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"compare-strings.md","mtime":"2017-02-09T00:53:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

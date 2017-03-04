@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Dates and times · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="read-csv-and-excel-files.html" />
+    <link rel="next" href="joins-and-merges.html" />
     
+    
+    <link rel="prev" href="json-and-xml.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -178,7 +180,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="dates-and-times.html">
+        <li class="chapter active" data-level="1.8" data-path="dates-and-times.html">
             
                 <a href="dates-and-times.html">
             
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Dates and times</a>
     </h1>
 </div>
 
@@ -288,9 +290,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pythontricks">pythontricks</h1>
-<p>Gitbook with all the python tricks I keep forgetting how to do</p>
-<p>(checking through old code: have got to but not started on file_ingestions_analysis in work codebase). </p>
+                                <h1 id="dates-and-times">Dates and Times</h1>
+<p>df[col] = pd.to_datetime(df[col])</p>
+<p>df[col].dt.month # 1 to 12</p>
+<p>df[col].dt.quarter</p>
+<p>df[col].dt.dayofyear</p>
+<p>Number of days between dates:  df[lag] = df[col1] - df[col2]; df[lag].dt.days</p>
+<p>import datetime</p>
+<p>datetime.datetime.strptime(date_text, &apos;%Y-%m-%dT%H:%M:%S.%f&apos;)</p>
 
                                 
                                 </section>
@@ -318,8 +325,12 @@
 
             
                 
+                <a href="json-and-xml.html" class="navigation navigation-prev " aria-label="Previous page: Json and Xml">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="read-csv-and-excel-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: read csv and excel files">
+                
+                <a href="joins-and-merges.html" class="navigation navigation-next " aria-label="Next page: Joins and merges">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +341,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-02-09T01:44:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Dates and times","level":"1.8","depth":1,"next":{"title":"Joins and merges","level":"1.9","depth":1,"path":"joins-and-merges.md","ref":"joins-and-merges.md","articles":[]},"previous":{"title":"Json and Xml","level":"1.7","depth":1,"path":"json-and-xml.md","ref":"json-and-xml.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dates-and-times.md","mtime":"2017-02-09T00:53:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

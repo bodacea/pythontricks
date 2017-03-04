@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Summarise one or more columns · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="read-csv-and-excel-files.html" />
+    <link rel="next" href="common-apis.html" />
     
+    
+    <link rel="prev" href="compare-strings.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -126,7 +128,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="summarise-one-or-more-columns.html">
+        <li class="chapter active" data-level="1.4" data-path="summarise-one-or-more-columns.html">
             
                 <a href="summarise-one-or-more-columns.html">
             
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Summarise one or more columns</a>
     </h1>
 </div>
 
@@ -288,9 +290,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pythontricks">pythontricks</h1>
-<p>Gitbook with all the python tricks I keep forgetting how to do</p>
-<p>(checking through old code: have got to but not started on file_ingestions_analysis in work codebase). </p>
+                                <h1 id="summarise-one-or-more-columns">Summarise one or more columns</h1>
+<p>List of all values: df[col].unique()</p>
+<p>Count of all values: df[col].value_counts()</p>
+<p>Sort by columns: df.sort_values([col1, col2])</p>
+<p>Stats of numerical column: df[col].describe()</p>
+<p>All the unique values in a column, in alphabetical order:</p>
+<p>vals = df[col].value_counts(dropna=True).index.tolist()</p>
+<p>vals.sort() # inplace sort</p>
+<p>print(&apos;{}&apos;.format(vals))</p>
 
                                 
                                 </section>
@@ -318,8 +326,12 @@
 
             
                 
+                <a href="compare-strings.html" class="navigation navigation-prev " aria-label="Previous page: Compare strings">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="read-csv-and-excel-files.html" class="navigation navigation-next navigation-unique" aria-label="Next page: read csv and excel files">
+                
+                <a href="common-apis.html" class="navigation navigation-next " aria-label="Next page: Common APIs">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -330,7 +342,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"read csv and excel files","level":"1.2","depth":1,"path":"read-csv-and-excel-files.md","ref":"read-csv-and-excel-files.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-02-09T01:44:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Summarise one or more columns","level":"1.4","depth":1,"next":{"title":"Common APIs","level":"1.5","depth":1,"path":"common-apis.md","ref":"common-apis.md","articles":[]},"previous":{"title":"Compare strings","level":"1.3","depth":1,"path":"compare-strings.md","ref":"compare-strings.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"summarise-one-or-more-columns.md","mtime":"2017-02-17T14:32:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-04T16:42:49.194Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
