@@ -32,52 +32,80 @@ If you want to contribute to this list (please do), send me a pull request or co
 # Pandas
 
 Create blank data frame
-```pd.DataFrame([], columns=[col1, col2])```
+```
+pd.DataFrame([], columns=[col1, col2])
+```
 
 Add row to data frame,. data row is a dict, with the same keys as the data frame column names
-```df = df.append(datarow, ignore_index=True)```
+```
+df = df.append(datarow, ignore_index=True)
+```
 
-```df.transpose() # very useful for viewing big sets of columns```
+```
+df.transpose() # very useful for viewing big sets of columns
+```
 
 Apply a function to every column value
-```df[col2] = df.apply(lambda row: my_function(row[col1]), axis=1)```
+```
+df[col2] = df.apply(lambda row: my_function(row[col1]), axis=1)
+```
 
 this one counts the commas in each cell
-```df[[col1]].applymap(lambda x: str.count(x, ','))[col1].value_counts() ```
+```
+df[[col1]].applymap(lambda x: str.count(x, ','))[col1].value_counts()
+```
 
 Get statistics for numerical columns
-```df.describe()```
+```
+df.describe()
+```
 
 List column values
-```df[col1].unique() #list all unique values in a column
+```
+df[col1].unique() #list all unique values in a column
 df[col1].value_counts() # Get column value counts
-pd.DataFrame({col1: df[col1].unique()}) # as dataframe```
+pd.DataFrame({col1: df[col1].unique()}) # as dataframe
+```
 
 Filter data frame by list of possible column values
-```df[df[col].isin([val1, val2, val3, val4])]
+```
+df[df[col].isin([val1, val2, val3, val4])]
 df[df[col1].isnull()] #NaNs
 df[(df[col1].isnull) & df[col2].isin([val1, val2])] #need brackets for ‘&’, ‘|' etc
-df[~(df[col1] == ‘xxx’)] #how to do negatives```
+df[~(df[col1] == ‘xxx’)] #how to do negatives
+```
 
 Sort by 1 or more columns
-```df.sort_values([col1, col2], ascending=[True, False])```
+```
+df.sort_values([col1, col2], ascending=[True, False])
+```
 
 Combine two dataframes by joining on one or more column values
-```df3 = pd.merge(df1, df2, left_on=[col1], right_on=[col2])```
+```
+df3 = pd.merge(df1, df2, left_on=[col1], right_on=[col2])
+```
 
 Combine two data frames by putting their columns side-by-side. NB need to have the same number of rows in each dataframe
-```df3 = pd.concat([df1, df2], axis=1)
-df3 = pd.concat([df1, df2], axis=1, join_axes=[df1.index]) # force index to df1 values```
+```
+df3 = pd.concat([df1, df2], axis=1)
+df3 = pd.concat([df1, df2], axis=1, join_axes=[df1.index]) # force index to df1 values
+```
 
 divide one column by another
-```df[col1].divide(df[col2])```
+```
+df[col1].divide(df[col2])
+```
 
 Create column from function of other columns (in this case, make struct)
-```df[col3] = list(zip(df[col1], df[col2]))```
+```
+df[col3] = list(zip(df[col1], df[col2]))
+```
 
 Process data frame row by row
-```For index, row in df.iterrows():
-  print(‘{}’.format(row[col1]))```
+```
+for index, row in df.iterrows():
+  print(‘{}’.format(row[col1]))
+```
 
 
 ## Read and write files
@@ -157,10 +185,14 @@ df = df.append(newdata)
 ## Handle strings
 
 Create a string with array values joined by ‘, ‘
-```', '.join(['a', 'b', 'c’]) ```
+```
+', '.join(['a', 'b', 'c’]) 
+```
 
 Create array from string that has with commas in it
-```'a,b,c'.split(',’)```
+```
+'a,b,c'.split(',’)
+```
 
 
 dataframe string handling
@@ -177,10 +209,14 @@ df[col1].str.split(‘,').str[:2] #get first two things separated by ‘,'
 ```
 
 Regular expressions: https://docs.python.org/2/library/re.html
-```df[col].str.replace('\W+', ‘') #clean out anything that isn’t alphanumeric```
+```
+df[col].str.replace('\W+', ‘') #clean out anything that isn’t alphanumeric
+```
 
 Print almost anything without hassle
-```print('{}'.format(mydatathing))```
+```
+print('{}'.format(mydatathing))
+```
 
 ### Compare strings
 
@@ -212,26 +248,40 @@ df[col1].to_dict() # just one column
 ```
 
 convert dataframe column to a list
-```df[col1].tolist()```
+```
+df[col1].tolist()
+```
 
 convert array to dataframe
-```df = pd.DataFrame(myarray, columns=[‘col1’, ‘col2’])```
+```
+df = pd.DataFrame(myarray, columns=[‘col1’, ‘col2’])
+```
 
 convert dictionary to dataframe
-```df = pd.DataFrame.from_dict(dict1, orient='index')```
+```
+df = pd.DataFrame.from_dict(dict1, orient='index')
+```
 
 Use a dataframe column as its index
-```df.set_index(col1, inplace=True)
-df.index.name=None # do this, or the index will be annoyingly hierarchical```
+```
+df.set_index(col1, inplace=True)
+df.index.name=None # do this, or the index will be annoyingly hierarchical
+```
 
 Convert dataframe index into a column
-```df[col1] = df.index.values```
+```
+df[col1] = df.index.values
+```
 
 Rename dataframe columns
-```df.rename(columns={col1:newname1, col2:newname2}, inplace=True)```
+```
+df.rename(columns={col1:newname1, col2:newname2}, inplace=True)
+```
 
 convert column type to string
-```df[‘col’] = df[‘col’].astype(str)``` 
+```
+df[‘col’] = df[‘col’].astype(str)
+``` 
 Other types include int, float, bool and 'datetime64[ns]’ (for conversion to date time). Bool converts from 0/1 values; you might have to clean your data column before trying it.  Converting to int is tricky if you have NaNs (Pandas can’t convert these to int). You might have to set a default value, or use float for this instead, e.g. 
 ```
 df[col] = df[col].replace('', np.NaN)
@@ -240,38 +290,56 @@ df[col] = df[col].replace(np.NaN, ‘')
 ```
 
 Round a floating-point value to nearest integer
-```df[col].round(0)```
+```
+df[col].round(0)
+```
 
 Convert string to datetime
-```df['dtcol'] = pd.to_datetime(df[col1]) 
-df['dtcol'] = pd.to_datetime(df[col1], errors=‘coerce’) # don’t crash on wrong format ```
+```
+df['dtcol'] = pd.to_datetime(df[col1]) 
+df['dtcol'] = pd.to_datetime(df[col1], errors=‘coerce’) # don’t crash on wrong format 
+```
 
 convert datetime column to EST timezone
-```df['dtcol'] = df['dtcol'].dt.tz_localize('UTC').dt.tz_convert('US/Eastern')```
+```
+df['dtcol'] = df['dtcol'].dt.tz_localize('UTC').dt.tz_convert('US/Eastern')
+```
 
 Get different pieces of datetime
-```df['dtcol'].apply(pd.datetools.normalize_date) #day-month-year
-df['dtcol'].dt.year #can also use month, day, hour, dayofyear etc```
+```
+df['dtcol'].apply(pd.datetools.normalize_date) #day-month-year
+df['dtcol'].dt.year #can also use month, day, hour, dayofyear etc
+```
 
 Get different parts of a date range
-```df[‘age’] = df[date1] - df[date2] # get date range
-df[‘age’] = df[‘age’].dt.days # get range in number of days```
+```
+df[‘age’] = df[date1] - df[date2] # get date range
+df[‘age’] = df[‘age’].dt.days # get range in number of days
+```
 
 Clean up a phone number or dollar amount
-```df[col1].str.replace('[^0-9.]', ‘’) #keep digits and ‘.'
-df[col1].str.replace('\D', ‘') # just keep digits```
+```
+df[col1].str.replace('[^0-9.]', ‘’) #keep digits and ‘.'
+df[col1].str.replace('\D', ‘') # just keep digits
+```
 
 Convert column values to something different
-```df.loc[df[col] == 1, col] = ‘True’ # one value
+```
+df.loc[df[col] == 1, col] = ‘True’ # one value
 df[col1].replace([‘a’,’b’,’c’], [‘x’,’y’,’z’]), inplace=True) # list of values
-df[col1].replace(list(dict1.values()), list(dict1.keys()), inplace=True) #dict vals to keys```
+df[col1].replace(list(dict1.values()), list(dict1.keys()), inplace=True) #dict vals to keys
+```
 
 Clean up NaNs
-```df = df.fillna(‘') # Replaces NaNs
-df[col].replace(np.NaN, ‘') # Same, but col and could use any values here```
+```
+df = df.fillna(‘') # Replaces NaNs
+df[col].replace(np.NaN, ‘') # Same, but col and could use any values here
+```
 
 If you do get a hierarchical index, here’s how to access its values
-```df.index.get_level_values(0)```
+```
+df.index.get_level_values(0)
+```
 
 
 ## Summarise single columns
@@ -301,67 +369,103 @@ print('{}'.format(vals))
 df = dfin[['col2', 'col', 'col3']].pivot_table(index='col2', columns='col', aggfunc='count', fill_value=0)
 df.reset_index().head()```
 
-```df['total'] = df.sum(axis=1)```
+```
+df['total'] = df.sum(axis=1)
+```
 
-```for col in df.columns:
+```
+for col in df.columns:
     df[col] = df[col].astype(str)
 ```
 
-```df['col2'] = df.index.values```
+```
+df['col2'] = df.index.values
+```
 
-```df['text'] = df['col2'] + '<br>Total: ' + df['total']```
+```
+df['text'] = df['col2'] + '<br>Total: ' + df['total']
+```
 
-```for status in df['col3'].columns:
+```
+for status in df['col3'].columns:
     df['text'] += '<br>' + status + ': ' + df['col3'][status]
 ```
 
 ## Reduce dimensions
 
 Drop *all* the duplicate rows (as in all copies of duplicates, including the originals) from a data frame: 
-```df[~df.duplicated(keep=False)]```
+```
+df[~df.duplicated(keep=False)]
+```
 
 Only keep the rows with duplicate values of (col1, col2)
-```df[df.duplicated(keep=False, subset=[col1, col2])]```
+```
+df[df.duplicated(keep=False, subset=[col1, col2])]
+```
 
 Get all the combinations of a named set of columns 
-```df.drop_duplicates(subset=[col1, col2])```
+```
+df.drop_duplicates(subset=[col1, col2])
+```
 Do it, and reset the index to 0,1,2…n
-```df.drop_duplicates(subset=[col1, col2]).reset_index(drop=True)```
+```
+df.drop_duplicates(subset=[col1, col2]).reset_index(drop=True)
+```
 
 Keep just the last row of each set of duplicate values
-```df.sort_values(col3).drop_duplicates(subset=[col1, col2], keep='last')```
+```
+df.sort_values(col3).drop_duplicates(subset=[col1, col2], keep='last')
+```
 
 For a given combination of columns, sum numerical values in other columns
-```df.groupby([col1, col2], as_index=False).sum() # .count(), .mean() etc also work```
+```
+df.groupby([col1, col2], as_index=False).sum() # .count(), .mean() etc also work
+```
 
 Get array of value counts for a column
-```pd.DataFrame(df[col1].value_counts()).rename(columns={col1:'rows’}) #index; col for count
-df[col1].value_counts().reset_index().sort_values('index’) #columns for value and count```
+```
+pd.DataFrame(df[col1].value_counts()).rename(columns={col1:'rows’}) #index; col for count
+df[col1].value_counts().reset_index().sort_values('index’) #columns for value and count
+```
 
 Remove dataframe columns
-```df.drop(col1, axis=1, inplace=True) # one column
-df.drop([col1, col2], axis=1, inplace=True) #multiple columns```
+```
+df.drop(col1, axis=1, inplace=True) # one column
+df.drop([col1, col2], axis=1, inplace=True) #multiple columns
+```
 
 show pairs of values 
-```pd.crosstab(df[col1], df[col2]) #as row-column table
+```
+pd.crosstab(df[col1], df[col2]) #as row-column table
 df.drop_duplicates(subset=[col1, col2]).reset_index(drop=True) # as list
-df[[col1, col2]].groupby([col1, col2]).count() # as hierarchical table```
+df[[col1, col2]].groupby([col1, col2]).count() # as hierarchical table
+```
 
 Pivot: show counts of value combinations as a table
 NB if you’re showing 2 columns, you need a 3rd column to count values in; you might want to add a dummy column for this, e.g. df[‘dummy’] = 1 
-```df[[col1, col2, col3]].pivot_table(index=col1, columns=col2, aggfunc='count', fill_value=0) # can also use aggfunc=‘sum’, aggfunc=np.mean```
+```
+df[[col1, col2, col3]].pivot_table(index=col1, columns=col2, aggfunc='count', fill_value=0) # can also use aggfunc=‘sum’, aggfunc=np.mean
+```
 
 Pivot: show counts of value combinations, as a row-column table
-```pd.pivot_table(df, values=col1, index=[col2], columns=[col3]).reset_index()```
+```
+pd.pivot_table(df, values=col1, index=[col2], columns=[col3]).reset_index()
+```
 
 Pivot with a non-standard aggregation function
-```pd.pivot_table(df, index=[col1, col2], values=[col3], aggfunc=lambda x: len(x.unique()))```
+```
+pd.pivot_table(df, index=[col1, col2], values=[col3], aggfunc=lambda x: len(x.unique()))
+```
 
 Aggregation function that produces an array - how to get at those values
-```pd.pivot_table(df, index=[col1, col2], values=[col3], aggfunc=lambda x: x[col3].describe().values[1])```
+```
+pd.pivot_table(df, index=[col1, col2], values=[col3], aggfunc=lambda x: x[col3].describe().values[1])
+```
 
 sum row values
-```df.sum(axis=1)```
+```
+df.sum(axis=1)
+```
 
 
 ## Joins and merges
@@ -395,136 +499,193 @@ datetime.datetime.strptime(date_text, '%Y-%m-%dT%H:%M:%S.%f')
 ```
 
 Get timezone
-```import pytz
-timezone = pytz.timezone("America/New_York”)```
+```
+import pytz
+timezone = pytz.timezone("America/New_York”)
+```
 
 Get filename date time
-```import time
+```
+import time
 import os
 from datetime import datetime
 tstring = time.ctime(os.path.getmtime(filename))
-timezone.localize(datetime.strptime(tstring, '%a %b %d %H:%M:%S %Y'))```
+timezone.localize(datetime.strptime(tstring, '%a %b %d %H:%M:%S %Y'))
+```
 
 Get minimum time value
-```timezone.localize(datetime.datetime(1970, 1, 1, 0, 0))```
+```
+timezone.localize(datetime.datetime(1970, 1, 1, 0, 0))
+```
 
 Get today’s date
-```import datetime
-datetoday = datetime.datetime.now().strftime('%Y-%m-%d')```
+```
+import datetime
+datetoday = datetime.datetime.now().strftime('%Y-%m-%d')
+```
 
 Convert month number 0…12 to month name
-```monthname = calendar.month_name[monthnum]```
+```
+monthname = calendar.month_name[monthnum]
+```
 
 Use a time offset
-```import datetime
-df[col1] - datetime.timedelta(days=28)```
+```
+import datetime
+df[col1] - datetime.timedelta(days=28)
+```
 
 Get month-end for each date (remove ‘M’ to get month-start
-```df[‘month end’] = df[‘date’].dt.to_period('M').dt.to_timestamp('M’)
-df[‘month end’] = df[‘date’].dt.to_period('M’) # just get the month```
-
+```
+df[‘month end’] = df[‘date’].dt.to_period('M').dt.to_timestamp('M’)
+df[‘month end’] = df[‘date’].dt.to_period('M’) # just get the month
+```
 
 ## Visualisations
 
 Save a plot from pylab
-```from pylab import savefig
-savefig('aaa.jpg’) #NB the file extension you use sets the output format```
+```
+from pylab import savefig
+savefig('aaa.jpg’) #NB the file extension you use sets the output format
+```
 
 Plot a histogram
-```df[col1].hist(bins=50)
+```
+df[col1].hist(bins=50)
 plt.suptitle(‘my title')
 ax.set_xlabel(‘my xlabel')
-ax.set_ylabel(‘my ylabel')```
+ax.set_ylabel(‘my ylabel')
+```
 
 Plot a histogram with data weighted by a second column value
-```hist, bins = np.histogram(df[col1], weights=df[col2])
+```
+hist, bins = np.histogram(df[col1], weights=df[col2])
 width = 0.7 * (bins[1] - bins[0])
 center = (bins[:-1] + bins[1:]) / 2
-plt.bar(center, hist, align='center', width=width)```
+plt.bar(center, hist, align='center', width=width)
+```
 
 just get the histogram (not plotting)
-```heights, values = np.histogram(df[col1].dropna())```
+```
+heights, values = np.histogram(df[col1].dropna())
+```
 
 boxplots: use seaborn
-```import seaborn as sns
+```
+import seaborn as sns
 sns.set_style('white’) # make it pretty
 sns.set(style="whitegrid", palette='pastel', color_codes=True) # prettier
-snsplot = sns.boxplot(df[col1], df[col2])```
+snsplot = sns.boxplot(df[col1], df[col2])
+```
 
 Simple lineplot
-```df[col1].plot(title=‘my title’)```
+```
+df[col1].plot(title=‘my title’)
+```
 
 Lineplot: the pretty Seaborn version
-```g = sns.FacetGrid(df, hue=col3, size=15, aspect=0.7)
+```
+g = sns.FacetGrid(df, hue=col3, size=15, aspect=0.7)
 snsplot = g.map(plt.plot, col1, col2)
-_x = g.ax.set(xlabel=‘my label', ylabel=‘my ylabel’, title=‘my title’)```
+_x = g.ax.set(xlabel=‘my label', ylabel=‘my ylabel’, title=‘my title’)
+```
 
 save Seaborn plot to a file
-```snsplot.savefig(‘my filename.png’) ```
+```
+snsplot.savefig(‘my filename.png’) 
+```
 
 Add text anywhere in a Seaborn plot
-```plt.text(col1val, col2val, 'my text')```
+```
+plt.text(col1val, col2val, 'my text')
+```
 
 Simple barchart
-```df[col].plot.bar(color=‘b’, title=‘my title') # color = r, g, b, y etc all work
-plt.bar(df[col1], df[col2]) # using matplotlib; col1 is x axis, col2 is y axis```
+```
+df[col].plot.bar(color=‘b’, title=‘my title') # color = r, g, b, y etc all work
+plt.bar(df[col1], df[col2]) # using matplotlib; col1 is x axis, col2 is y axis
+```
 
 Get stacked barchart; columns = colors, index=axis labels
-```df.plot.bar(stacked=True)```
+```
+df.plot.bar(stacked=True)
+```
 
 change plot labels etc on standard plots
-```ax = df[col1].plot.bar()
-ax = ax.set_yticklabels(df[col2])```
+```
+ax = df[col1].plot.bar()
+ax = ax.set_yticklabels(df[col2])
+```
 
 change plot labels etc on seaborn plots
-```import seaborn as sns
+```
+import seaborn as sns
 import matplotlib.pyplot as plt
 plt.figure(0)
 ax = plt.axes()
 sns.boxplot(df[col1], df[col2])
-ax.set_title(‘my title’)```
+ax.set_title(‘my title’)
+```
 
 Get colored scatterplot
-```ax.scatter(df[col1], df[col2], c=df[col3])```
+```
+ax.scatter(df[col1], df[col2], c=df[col3])
+```
 
 Use seaborn for regression plots
-```sns.regplot(data=df, x=col1, y=col2)```
+```
+sns.regplot(data=df, x=col1, y=col2)
+```
 
 Using Plotly?  Make sure you set your visualizations to local-only… 
-```import plotly
-plotly.tools.set_config_file(world_readable=False, sharing='private')```
+```
+import plotly
+plotly.tools.set_config_file(world_readable=False, sharing='private')
+```
 
 Create multiple Matplotlib figures together
-```plt.figure()
+```
+plt.figure()
 ax = plt.subplot(3, 1, 1) #3 rows, 1 column, first plot
 df[col1].hist(bins=50)
 ax = plt.subplot(3, 1, 2)
 df[col2].hist(bins=50)
 ax = plt.subplot(3, 1, 3)
-df[col3].hist(bins=50)```
+df[col3].hist(bins=50)
+```
 
 Create multiple Matplotlib figures without counting…
-```for index in range(0, numplots):
+```
+for index in range(0, numplots):
   plt.figure(index)
-  df[col].plot.bar()```
+  df[col].plot.bar()
+  ```
 
 Gui widgets: use ipywidgets
-```from ipywidgets import widgets
-from IPython.display import display```
+```
+from ipywidgets import widgets
+from IPython.display import display
+```
 
 Rotate your matplotlib axis labels
-```df.plot()
-plt.xticks(rotation=90)```
+```
+df.plot()
+plt.xticks(rotation=90)
+```
 
 Violin plot? Use Seaborn 
-```sns.violinplot(data=df, x=col1, y=col2, hue=col3, split=True, 
-                      palette={col3val1:'g', col3val2:'r'}, size=10, aspect=0.5)```
+```
+sns.violinplot(data=df, x=col1, y=col2, hue=col3, split=True, 
+                      palette={col3val1:'g', col3val2:'r'}, size=10, aspect=0.5)
+```
 
 Put a matplotlib legend wherever you want it
-```ax = plt.subplot(111)
+```
+ax = plt.subplot(111)
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))```
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+```
 
 
 ```
@@ -666,20 +827,29 @@ events = estream.get_events()
 # Other things
 
 One-line if statement
-```myarray = [myjson[mykey]] if mykey in myjson.keys() else [‘']```
+```
+myarray = [myjson[mykey]] if mykey in myjson.keys() else [‘']
+```
 
 loop through json keys
-```for mykey, mydata in jdata.items():```
+```
+for mykey, mydata in jdata.items():
+```
 
 Key not in list
-```if (mykey not in myjson):```
+```
+if (mykey not in myjson):
+```
 
 User input
-```myvar = input(“my friendly text> “)```
+```
+myvar = input(“my friendly text> “)
+```
 
 ## Read/Write raw CSV
 
-```import csv
+```
+import csv
 
 fin = open(infilename, 'r')
 fout = open(outfilename, 'w', newline='')
@@ -758,30 +928,46 @@ def printkids(heading, parent):
 ## Dicts sets arrays
 
 mydict.keys() is *not* a list. If you want a list, do this
-```list(mydict.keys())```
+```
+list(mydict.keys())
+```
 
 combine two dicts together
-```newdict = dict1.update(dict2)```
+```
+newdict = dict1.update(dict2)
+```
 
 do something to every item in an array
-```[x*2 for x in myarray]```
+```
+[x*2 for x in myarray]
+```
 
 sets
-```set(['a', 'b', 'c', 'a']) # create set
-set(['a', 'b', 'c', 'a'])  - set(['b','d']) #everything in first but not second```
+```
+set(['a', 'b', 'c', 'a']) # create set
+set(['a', 'b', 'c', 'a'])  - set(['b','d']) #everything in first but not second
+```
 other set functions include & (intersection, or), | (union, and), ^ (nor, not or)
 
 combine two arrays
-```arr3 = arr1 + arr2```
+```
+arr3 = arr1 + arr2
+```
 
 Remove key-value pair from dict
-```_value1 = mydict.pop(key1)```
+```
+value1 = mydict.pop(key1)
+```
 
 loop over array index and values
-```for index, value in enumerate(myarray):```
+```
+for index, value in enumerate(myarray):
+```
 
 Loop over dict key-value pairs
-```for key, val in mydict.items():```
+```
+for key, val in mydict.items():
+```
 
 
 # Notes
