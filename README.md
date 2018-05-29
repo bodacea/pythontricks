@@ -30,89 +30,85 @@ If you want to contribute to this list (please do), send me a pull request or co
 
 ## Read files
 
-Read excel without the top blank row:  df = pd.read\_excel\(filename, skiprows=1\)
+Read excel without the top blank row:  df = pd.read_excel(filename, skiprows=1)
 
 ### Type conversions
 
-df\[col\].astype\(int\)
+df[col].astype(int)
 
-df\[col\].astype\(float\).replace\({ 0 : np.nan }\) \# String replace: nan instead of 0
+df[col].astype(float).replace({ 0 : np.nan }) # String replace: nan instead of 0
 
 ### Creating a blank dataframe
 
-headers = \[head1, head2, etc\]
+headers = [head1, head2, etc]
 
-df = pd.DataFrame\(\[\], columns=headers\)
+df = pd.DataFrame([], columns=headers)
 
-df = df.append\(pd.DataFrame\(\[val1, val2, etc\], columns=headers\)\)
+df = df.append(pd.DataFrame([val1, val2, etc], columns=headers))
 
-### Check a bunch of files
+### Load a bunch of files into one dataframe
 
-filelist = glob.glob\('../\*.csv'\)
+```
+filelist = glob.glob('../*.csv')
 
-df = pd.DataFrame\(\[\]\)
+df = pd.DataFrame([])
 
-df = df.append\(newdata\)
+df = df.append(newdata)
+```
 
 ### Read/Write raw CSV
 
-import csv
+```import csv
 
+fin = open(infilename, 'r')
+fout = open(outfilename, 'w', newline='')
+cin = csv.reader(fin)
+cout = csv.writer(fout, quoting=csv.QUOTE_NONNUMERIC)
 ```
-fin = open\(infilename, 'r'\)
-
-fout = open\(outfilename, 'w', newline=''\)
-
-cin = csv.reader\(fin\)
-
-cout = csv.writer\(fout, quoting=csv.QUOTE\_NONNUMERIC\)
-```
-
-
 
 ## Compare strings
 
-* value: df\[df\[col\] == value\]
-* everything in string before "/": df\[col\].str.split\('/'\).str.get\(0\)
+* value: df[df[col] == value]
+* everything in string before "/": df[col].str.split('/').str.get(0)
 
-* rows with one of val1, val2 etc: df\[df\[col\].isin\(\[val1, val2, ''\]\)\]
+* rows with one of val1, val2 etc: df[df[col].isin([val1, val2, ''])]
 
-* rows that don't start with val1, val2 etc: df\[df\[col\].str\[:4\].isin\(\[val1, val2, val3\]\) == False\]
+* rows that don't start with val1, val2 etc: df[df[col].str[:4].isin([val1, val2, val3]) == False]
 
-* non-null values: df\[~df\[col\].isnull\(\)\]
+* non-null values: df[~df[col].isnull()]
 
-* rows starting with value; ignoring NaNs: df\[df\[col\].str.startswith\(value, na=False\)\]
+* rows starting with value; ignoring NaNs: df[df[col].str.startswith(value, na=False)]
 
-* df\[df\[col\].str.contains\(value\)\]
-* df\[col\].astype\('str'\).str.replace\('\[^0-9.\]', ''\)
-* df\[col\].replace\('', np.NaN\)
-* df\['state'\].replace\(\['Illinois', 'Md.', 'Georgia'\], \['IL', 'MD', 'GA'\], inplace=True\)
+* df[df[col].str.contains(value)]
+* df[col].astype('str').str.replace('[^0-9.]', '')
+* df[col].replace('', np.NaN)
+* df['state'].replace(['Illinois', 'Md.', 'Georgia'], ['IL', 'MD', 'GA'], inplace=True)
 
 
 
-Count commas: df\[\[col\]\].applymap\(lambda x: str.count\(x, ','\)\)\[col\].value\_counts\(\)
+Count commas: df[[col]].applymap(lambda x: str.count(x, ','))[col].value_counts()
 
 
 ## Summarise single columns
 
-List of all values: df\[col\].unique\(\)
+List of all values: df[col].unique()
 
-Count of all values: df\[col\].value\_counts\(\)
+Count of all values: df[col].value_counts()
 
-Sort by columns: df.sort\_values\(\[col1, col2\]\)
+Sort by columns: df.sort_values([col1, col2])
 
-Stats of numerical column: df\[col\].describe\(\)
+Stats of numerical column: df[col].describe()
 
 
 
 All the unique values in a column, in alphabetical order:
 
 ```
-vals = df\[col\].value\_counts\(dropna=True\).index.tolist\(\)
+vals = df[col].value_counts(dropna=True).index.tolist()
 
-vals.sort\(\) \# inplace sort
+vals.sort() # inplace sort
 
-print\('{}'.format\(vals\)\)
+print('{}'.format(vals))
 ```
 
 ## Summarise multiple columns
@@ -140,80 +136,80 @@ df.reset_index().head()```
 
 ## Joins and merges
 ```
-pd.merge\(df1, df2, how='left',  left\_on=\[col1, col2\], right\_on=\[col1, col2\]\)
+pd.merge(df1, df2, how='left',  left_on=[col1, col2], right_on=[col1, col2])
 ```
 
 Compare two columns of values: 
 ```
-pd.crosstab\(df\[col1\], df\[col2\]\)
+pd.crosstab(df[col1], df[col2])
 ```
 
 ## Dates and times
 
 ```
-df\[col\] = pd.to\_datetime\(df\[col\]\)
+df[col] = pd.to_datetime(df[col])
 
-df\[col\].dt.month \# 1 to 12
+df[col].dt.month # 1 to 12
 
-df\[col\].dt.quarter
+df[col].dt.quarter
 
-df\[col\].dt.dayofyear
+df[col].dt.dayofyear
 ```
 
 Number of days between dates:  
 ```
-df\[lag\] = df\[col1\] - df\[col2\]; df\[lag\].dt.days
+df[lag] = df[col1] - df[col2]; df[lag].dt.days
 ```
 
 Convert string to time:
 ```
 import datetime
 
-datetime.datetime.strptime\(date\_text, '%Y-%m-%dT%H:%M:%S.%f'\)
+datetime.datetime.strptime(date_text, '%Y-%m-%dT%H:%M:%S.%f')
 ```
 
 
 ## Plots
 
 ```
-df\[col\].hist\(bins=100\)
+df[col].hist(bins=100)
 
-df.plot.bar\(stacked=True\)
+df.plot.bar(stacked=True)
 
-sns.boxplot\(df\[col1\], df\[col2\]\) \# col1 = xaxis; col2 = yaxis
+sns.boxplot(df[col1], df[col2]) # col1 = xaxis; col2 = yaxis
 
-plt.figure\(figsize=\(10,10\)\)
+plt.figure(figsize=(10,10))
 ```
 
 ### Subplots
 ```
-ax = plt.subplot\(3, 1, 1\)
+ax = plt.subplot(3, 1, 1)
 
-df\[col1\].hist\(bins=50\)
+df[col1].hist(bins=50)
 
-ax = plt.subplot\(3, 1, 2\)
+ax = plt.subplot(3, 1, 2)
 
-df\[col2\].hist\(bins=50\)
+df[col2].hist(bins=50)
 
-ax = plt.subplot\(3, 1, 3\)
+ax = plt.subplot(3, 1, 3)
 
-plt.scatter\(df\[col1\], df\[col2\]\)
+plt.scatter(df[col1], df[col2])
 ```
 
 ### Axis labels
 
 ```
-fig = plt.figure\(\)
+fig = plt.figure()
 
-ax = fig.add\_subplot\(1,1,1\)
+ax = fig.add_subplot(1,1,1)
 
-ax.scatter\(df\[col1\], df\[col2\], c=df\[col3\]\)
+ax.scatter(df[col1], df[col2], c=df[col3])
 
-ax.set\_xlabel\(label1\)
+ax.set_xlabel(label1)
 
-ax.set\_ylabel\(label2\)
+ax.set_ylabel(label2)
 
-\#ax.legend\(\)
+#ax.legend()
 ```
 
 ### Using Plotly
@@ -221,16 +217,16 @@ ax.set\_ylabel\(label2\)
 ```
 import plotly
 
-plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
+plotly.tools.set_config_file(world_readable=False, sharing='private')
 ```
 
 ### Save to file/web
 
 ```
-df.to\_html\(\)
+df.to_html()
 ```
 
-### Choropleth \(in new page\)
+### Choropleth (in new page)
 
 ```
 import matplotlib.pyplot as plt
@@ -239,13 +235,13 @@ import matplotlib.pyplot as plt
 
 import plotly
 
-plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
+plotly.tools.set_config_file(world_readable=False, sharing='private')
 
-scl = \[\[0.0, 'rgb\(242,240,247\)'\],\[0.2, 'rgb\(218,218,235\)'\],\[0.4, 'rgb\(188,189,220\)'\],\
+scl = [[0.0, 'rgb(242,240,247)'],[0.2, 'rgb(218,218,235)'],[0.4, 'rgb(188,189,220)'],\
 
-            \[0.6, 'rgb\(158,154,200\)'\],\[0.8, 'rgb\(117,107,177\)'\],\[1.0, 'rgb\(84,39,143\)'\]\]
+            [0.6, 'rgb(158,154,200)'],[0.8, 'rgb(117,107,177)'],[1.0, 'rgb(84,39,143)']]
 
-data = \[ dict\(
+data = [ dict(
 
         type='choropleth',
 
@@ -253,61 +249,61 @@ data = \[ dict\(
 
         autocolorscale = False,
 
-        locations = dfbystate\['state'\],
+        locations = dfbystate['state'],
 
-        z = dfbystate\['borrowers'\].astype\(float\),
+        z = dfbystate['borrowers'].astype(float),
 
         locationmode = 'USA-states',
 
-        text = dfbystate\['text'\],
+        text = dfbystate['text'],
 
-        marker = dict\(
+        marker = dict(
 
-            line = dict \(
+            line = dict (
 
-                color = 'rgb\(255,255,255\)',
+                color = 'rgb(255,255,255)',
 
                 width = 2
 
-            \) \),
+            ) ),
 
-        colorbar = dict\(
+        colorbar = dict(
 
-            title = 'Number of borrowers'\)
+            title = 'Number of borrowers')
 
-        \) \]
+        ) ]
 
 
 
-layout = dict\(
+layout = dict(
 
-        title = 'Borrowers&lt;br&gt;\(Hover for breakdown\)',
+        title = 'Borrowers&lt;br&gt;(Hover for breakdown)',
 
-        geo = dict\(
+        geo = dict(
 
             scope='usa',
 
-            projection=dict\( type='albers usa' \),
+            projection=dict( type='albers usa' ),
 
             showlakes = True,
 
-            lakecolor = 'rgb\(255, 255, 255\)'\),
+            lakecolor = 'rgb(255, 255, 255)'),
 
-             \)
+             )
 
-fig = dict\( data=data, layout=layout \)
+fig = dict( data=data, layout=layout )
 
-plotly.offline.plot\( fig, filename='../../data/borrowers\_map.html' \)
+plotly.offline.plot( fig, filename='../../data/borrowers_map.html' )
 ```
 
 
 ## Jupyter settings
 
-See \*all\* the columns in a dataframe:
+See *all* the columns in a dataframe:
 ```
 ```
 
-See plots on the page \(not as popups\): 
+See plots on the page (not as popups): 
 ```
 %matplotlib inline
 ```
@@ -315,7 +311,7 @@ See plots on the page \(not as popups\):
 See the whole string in each dataframe: 
 
 ```
-pd.set\_option\('display.max\_colwidth', -1\)
+pd.set_option('display.max_colwidth', -1)
 ```
 
 # Common APIs
@@ -336,14 +332,14 @@ events = estream.get_events()
 ## Lists
 
 ```
-','.join\[val1, val2, etc\]
+','.join[val1, val2, etc]
 
-string.split\(','\)
+string.split(',')
 ```
 
 Remove key-value from list: 
 ```
-value = list.pop\(key\)
+value = list.pop(key)
 ```
 
 ### DefaultDicts
@@ -362,21 +358,21 @@ Write json file:
 ```
 import json
 
-fout = open\(filename, 'w'\)
+fout = open(filename, 'w')
 
-json.dump\(dataset, fout\)
+json.dump(dataset, fout)
 ```
 
-If the format's a bit hinky \(e.g. array of json objects\), try pickle...
+If the format's a bit hinky (e.g. array of json objects), try pickle...
 
 ```
 import pickle 
 
-fout = open\(filename, 'wb'\)
+fout = open(filename, 'wb')
 
-pickle.dump\(dataset, fout\) \# get back with pickle.load\(\)
+pickle.dump(dataset, fout) # get back with pickle.load()
 
-fout.close\(\)
+fout.close()
 ```
 
 ### Prettyprint json
@@ -384,19 +380,19 @@ fout.close\(\)
 SJT note: ungodly hack. There's also a single command for this. Will find in notes. 
 
 ```
-def printkids\(heading, parent\):
+def printkids(heading, parent):
 
-for kid in parent.keys\(\): 
+for kid in parent.keys(): 
 
-    if type\(parent\[kid\]\) == dict:
+    if type(parent[kid]) == dict:
 
-        print\('{} {}'.format\(heading, kid\)\)
+        print('{} {}'.format(heading, kid))
 
-        printkids\(heading + '--', parent\[kid\]\)
+        printkids(heading + '--', parent[kid])
 
     else:
 
-        print\('{} {}: {}'.format\(heading, kid, parent\[kid\]\)\)
+        print('{} {}: {}'.format(heading, kid, parent[kid]))
 
 return
 ```
@@ -404,4 +400,4 @@ return
 
 # Notes
 
-Note for Sara: \(checking through old code: have got to but not started on file_ingestions_analysis in work codebase\). 
+Note for Sara: (checking through old code: have got to but not started on file_ingestions_analysis in work codebase). 
