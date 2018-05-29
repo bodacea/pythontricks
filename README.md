@@ -93,9 +93,7 @@ cout = csv.writer\(fout, quoting=csv.QUOTE\_NONNUMERIC\)
 Count commas: df\[\[col\]\].applymap\(lambda x: str.count\(x, ','\)\)\[col\].value\_counts\(\)
 
 
-
 ## Summarise single columns
-
 
 List of all values: df\[col\].unique\(\)
 
@@ -109,53 +107,50 @@ Stats of numerical column: df\[col\].describe\(\)
 
 All the unique values in a column, in alphabetical order:
 
+```
 vals = df\[col\].value\_counts\(dropna=True\).index.tolist\(\)
 
 vals.sort\(\) \# inplace sort
 
 print\('{}'.format\(vals\)\)
-
+```
 
 ## Summarise multiple columns
 
 ### Create summary of all values in a column, indexed by column2
 
-`df = dfin[['col2', 'col', 'col3']].pivot_table(`
-
 ```
-index='col2', columns='col', aggfunc='count', fill_value=0)
-```
+df = dfin[['col2', 'col', 'col3']].pivot_table(index='col2', columns='col', aggfunc='count', fill_value=0)
+df.reset_index().head()```
 
-`df.reset_index().head()`
+```df['total'] = df.sum(axis=1)```
 
-`df['total'] = df.sum(axis=1)`
-
-`for col in df.columns:`
-
-```
-df[col] = df[col].astype(str)
+```for col in df.columns:
+    df[col] = df[col].astype(str)
 ```
 
-`df['col2'] = df.index.values`
+```df['col2'] = df.index.values```
 
-`df['text'] = df['col2'] + '<br>Total: ' + df['total']`
+```df['text'] = df['col2'] + '<br>Total: ' + df['total']```
 
-`for status in df['col3'].columns:`
-
-```
-df['text'] += '<br>' + status + ': ' + df['col3'][status]
+```for status in df['col3'].columns:
+    df['text'] += '<br>' + status + ': ' + df['col3'][status]
 ```
 
 
 ## Joins and merges
-
+```
 pd.merge\(df1, df2, how='left',  left\_on=\[col1, col2\], right\_on=\[col1, col2\]\)
+```
 
-Compare two columns of values: pd.crosstab\(df\[col1\], df\[col2\]\)
-
+Compare two columns of values: 
+```
+pd.crosstab\(df\[col1\], df\[col2\]\)
+```
 
 ## Dates and times
 
+```
 df\[col\] = pd.to\_datetime\(df\[col\]\)
 
 df\[col\].dt.month \# 1 to 12
@@ -163,11 +158,15 @@ df\[col\].dt.month \# 1 to 12
 df\[col\].dt.quarter
 
 df\[col\].dt.dayofyear
-
-Number of days between dates:  df\[lag\] = df\[col1\] - df\[col2\]; df\[lag\].dt.days
-
 ```
 
+Number of days between dates:  
+```
+df\[lag\] = df\[col1\] - df\[col2\]; df\[lag\].dt.days
+```
+
+Convert string to time:
+```
 import datetime
 
 datetime.datetime.strptime\(date\_text, '%Y-%m-%dT%H:%M:%S.%f'\)
@@ -176,7 +175,7 @@ datetime.datetime.strptime\(date\_text, '%Y-%m-%dT%H:%M:%S.%f'\)
 
 ## Plots
 
-
+```
 df\[col\].hist\(bins=100\)
 
 df.plot.bar\(stacked=True\)
@@ -184,9 +183,10 @@ df.plot.bar\(stacked=True\)
 sns.boxplot\(df\[col1\], df\[col2\]\) \# col1 = xaxis; col2 = yaxis
 
 plt.figure\(figsize=\(10,10\)\)
+```
 
 ### Subplots
-
+```
 ax = plt.subplot\(3, 1, 1\)
 
 df\[col1\].hist\(bins=50\)
@@ -198,9 +198,11 @@ df\[col2\].hist\(bins=50\)
 ax = plt.subplot\(3, 1, 3\)
 
 plt.scatter\(df\[col1\], df\[col2\]\)
+```
 
 ### Axis labels
 
+```
 fig = plt.figure\(\)
 
 ax = fig.add\_subplot\(1,1,1\)
@@ -212,19 +214,25 @@ ax.set\_xlabel\(label1\)
 ax.set\_ylabel\(label2\)
 
 \#ax.legend\(\)
+```
 
 ### Using Plotly
 
+```
 import plotly
 
 plotly.tools.set\_config\_file\(world\_readable=False, sharing='private'\)
+```
 
 ### Save to file/web
 
+```
 df.to\_html\(\)
+```
 
 ### Choropleth \(in new page\)
 
+```
 import matplotlib.pyplot as plt
 
 %matplotlib inline
@@ -287,72 +295,81 @@ layout = dict\(
 
              \)
 
-    
-
 fig = dict\( data=data, layout=layout \)
 
 plotly.offline.plot\( fig, filename='../../data/borrowers\_map.html' \)
-
+```
 
 
 ## Jupyter settings
 
 See \*all\* the columns in a dataframe:
+```
+```
 
-See plots on the page \(not as popups\): %matplotlib inline
+See plots on the page \(not as popups\): 
+```
+%matplotlib inline
+```
 
-See the whole string in each dataframe: pd.set\_option\('display.max\_colwidth', -1\)
+See the whole string in each dataframe: 
 
-
+```
+pd.set\_option\('display.max\_colwidth', -1\)
+```
 
 # Common APIs
 
 ## Box
 
-> `from boxsdk import Client, OAuth2`
->
-> `oauth = OAuth2(client_id=client_id, client_secret=client_secret, access_token=developer_token)`
->
-> `client = Client(oauth)`
->
-> `estream = client.events()`
->
-> `events = estream.get_events()`
-
+```
+from boxsdk import Client, OAuth2
+oauth = OAuth2(client_id=client_id, client_secret=client_secret, access_token=developer_token)
+client = Client(oauth)
+estream = client.events()
+events = estream.get_events()
+```
 
 
 # Other things
 
 ## Lists
 
+```
 ','.join\[val1, val2, etc\]
 
 string.split\(','\)
+```
 
-Remove key-value from list: value = list.pop\(key\)
+Remove key-value from list: 
+```
+value = list.pop\(key\)
+```
 
 ### DefaultDicts
 
 Fills in the 'default' value every time you access a dict key that doesn't exist yet. Genius.
 
+```
 from collections import defaultdict
-
+```
 
 
 ## Json and xml
 
-### Write json file \(1\)
+Write json file:
 
+```
 import json
 
 fout = open\(filename, 'w'\)
 
 json.dump\(dataset, fout\)
-
-### Write json file \(2\)
+```
 
 If the format's a bit hinky \(e.g. array of json objects\), try pickle...
 
+```
 import pickle 
 
 fout = open\(filename, 'wb'\)
@@ -360,12 +377,15 @@ fout = open\(filename, 'wb'\)
 pickle.dump\(dataset, fout\) \# get back with pickle.load\(\)
 
 fout.close\(\)
+```
 
 ### Prettyprint json
 
-def printkids\(heading, parent\):
+SJT note: ungodly hack. There's also a single command for this. Will find in notes. 
 
 ```
+def printkids\(heading, parent\):
+
 for kid in parent.keys\(\): 
 
     if type\(parent\[kid\]\) == dict:
