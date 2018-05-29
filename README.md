@@ -366,8 +366,10 @@ print('{}'.format(vals))
 ### Create summary of all values in a column, indexed by column2
 
 ```
-df = dfin[['col2', 'col', 'col3']].pivot_table(index='col2', columns='col', aggfunc='count', fill_value=0)
-df.reset_index().head()```
+df = dfin[['col2', 'col', 'col3']].pivot_table(index='col2', columns='col', 
+                                               aggfunc='count', fill_value=0)
+df.reset_index().head()
+```
 
 ```
 df['total'] = df.sum(axis=1)
