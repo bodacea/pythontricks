@@ -784,7 +784,7 @@ pd.set_option('display.max_rows', 1000)
 
 Set pandas output to show whole strings, not just starts of strings
 ```
-pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_colwidth', None)
 ```
 
 Reload a library in Python3.4 onwards:
